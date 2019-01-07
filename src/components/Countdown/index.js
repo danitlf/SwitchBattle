@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const Countdown = ({ currentTime }) => (
-  <Text style={styles.text}>
-    {currentTime}
-  </Text>
+const Countdown = ({ currentTime, ...props }) => (
+  <View {...props}>
+    <Text style={styles.text}>
+      {currentTime}
+    </Text>
+  </View>
 );
 
 export default Countdown;

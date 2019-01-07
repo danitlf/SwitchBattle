@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Switch, Alert } from "react-native";
+import { StyleSheet, Text, View, Switch, Alert, Image } from "react-native";
 import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
@@ -75,17 +75,21 @@ export default class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Countdown currentTime={this.state.durationString} />
+        <View style={styles.logoBox}>
+          <Image
+            style={styles.logo}
+            source={require('../../../assets/img/logo.png')} />
+        </View>
+        
+        <Countdown style={styles.countdown} currentTime={this.state.durationString} />
+        
         <Switch
-          style={{
-            transform: [{ scaleX: 3.0 }, { scaleY: 3.0 }],
-            marginTop: 40,
-            marginBottom: 30
-          }}
+          style={styles.switch}
           value={this.state.switchValue}
           onValueChange={value => this.changeSwitch(value)}
         />
-        <Text style={{ color: "white" }}>Record: 00:00:00</Text>
+
+        <Text style={styles.record}>Record: 00:00:00</Text>
       </View>
     );
   }
@@ -97,5 +101,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#334856"
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain'
+  },
+  switch: {
+    transform: [{ scaleX: 3.0 }, { scaleY: 3.0 }],
+    marginTop: 40,
+    marginBottom: 30
+  },
+  record: {
+    color: "white",
+    fontSize: 16
   }
 });

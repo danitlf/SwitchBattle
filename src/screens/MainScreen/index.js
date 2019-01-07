@@ -11,7 +11,7 @@ typeof moment.duration.fn.format === "function";
 typeof moment.duration.format === "function";
 // true
 
-export default class App extends Component {
+export default class MainScreen extends Component {
   constructor(props) {
     super(props);
 

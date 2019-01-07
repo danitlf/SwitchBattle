@@ -6,6 +6,7 @@ import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import { FIREBASE_CONFIG } from "../../constants";
 import { Countdown } from "../../components";
+import AppLayout from '../AppLayout';
 
 momentDurationFormatSetup(moment);
 typeof moment.duration.fn.format === "function";
@@ -74,7 +75,7 @@ export default class MainScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <AppLayout>
         <View style={styles.logoBox}>
           <Image
             style={styles.logo}
@@ -90,18 +91,13 @@ export default class MainScreen extends Component {
         />
 
         <Text style={styles.record}>Record: 00:00:00</Text>
-      </View>
+      </AppLayout>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#334856"
-  },
+  
   logo: {
     width: 150,
     height: 150,

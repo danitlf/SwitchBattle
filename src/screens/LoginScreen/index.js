@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, Text, LayoutAnimation } from "react-native";
 import AppLayout from "../AppLayout";
 import withDismissKeyboardHOC from "../../hocs/DismissKeyboardHOC";
 

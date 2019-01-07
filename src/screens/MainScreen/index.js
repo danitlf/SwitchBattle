@@ -4,6 +4,8 @@ import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
+import { FIREBASE_CONFIG } from "../../constants";
+import { Countdown } from "../../components";
 
 momentDurationFormatSetup(moment);
 typeof moment.duration.fn.format === "function";
@@ -24,17 +26,8 @@ export default class MainScreen extends Component {
   }
 
   componentDidMount = () => {
-    var config = {
-      apiKey: "AIzaSyApGt9XjGSJZe6EXUJXgmTOquqZaq6f2-U",
-      authDomain: "switchbattle-3a181.firebaseapp.com",
-      databaseURL: "https://switchbattle-3a181.firebaseio.com",
-      projectId: "switchbattle-3a181",
-      storageBucket: "switchbattle-3a181.appspot.com",
-      messagingSenderId: "320870590749"
-    };
-
     if (!firebase.apps.length) {
-      firebase.initializeApp(config);
+      firebase.initializeApp(FIREBASE_CONFIG);
     }
 
     var switchRef = firebase.database().ref("switch/");
@@ -50,7 +43,6 @@ export default class MainScreen extends Component {
 
   changeSwitch = async switchValue => {
     let database = firebase.database();
-    console.log(database);
 
     database
       .ref("switch/")
@@ -83,9 +75,7 @@ export default class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 60, color: "white" }}>
-          {this.state.durationString}
-        </Text>
+        <Countdown currentTime={this.state.durationString} />
         <Switch
           style={{
             transform: [{ scaleX: 3.0 }, { scaleY: 3.0 }],

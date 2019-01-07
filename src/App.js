@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MainScreen } from "./screens";
+import { MainScreen, LoginScreen } from "./screens";
 
 export default class App extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <MainScreen />
+      <LoginScreen />
     );
   }
 }

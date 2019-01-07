@@ -1,10 +1,19 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import withDismissKeyboardHOC from '../hocs/DismissKeyboardHOC';
 
-const AppLayout = ({ children }) => (
-  <View style={styles.container}>
+const DismissableKeyboardView = withDismissKeyboardHOC(View);
+
+const AppLayout = ({ children, ...props }) => (
+  <DismissableKeyboardView style={styles.container} {...props}>
+    <View style={styles.logoBox}>
+      <Image
+        style={styles.logo}
+        source={require('../../assets/img/logo.png')} />
+    </View>
+
     {children}
-  </View>
+  </DismissableKeyboardView>
 );
 
 const styles = StyleSheet.create({
@@ -13,6 +22,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#334856"
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain'
   }
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Image, UIManager, LayoutAnimation, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, UIManager, LayoutAnimation, Dimensions, StatusBar } from 'react-native';
 import withDismissKeyboardHOC from '../hocs/DismissKeyboardHOC';
+import { ScreenLayoutAnimation } from '../constants';
 
 UIManager.setLayoutAnimationEnabledExperimental
 && UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -8,26 +9,6 @@ UIManager.setLayoutAnimationEnabledExperimental
 const DismissableKeyboardView = withDismissKeyboardHOC(View);
 
 const { width, height } = Dimensions.get('window');
-
-const CustomLayoutAnimation = {
-  duration: 800,
-  create: {
-    property: LayoutAnimation.Properties.scaleXY,
-    type: LayoutAnimation.Types.spring,
-    springDamping: 0.8
-  },
-  update: {
-    property: LayoutAnimation.Properties.scaleXY,
-    type: LayoutAnimation.Types.spring,
-    springDamping: 0.8
-  },
-  delete: {
-    duration: 200,
-    property: LayoutAnimation.Properties.scaleXY,
-    type: LayoutAnimation.Types.spring,
-    springDamping: 0.8
-  }
-};
 
 class AppLayout extends React.Component {
   constructor(props) {
@@ -40,7 +21,7 @@ class AppLayout extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      LayoutAnimation.configureNext(CustomLayoutAnimation);
+      LayoutAnimation.configureNext(ScreenLayoutAnimation);
       this.setState({ top: 0 });
     }, 200);
   }
@@ -48,6 +29,9 @@ class AppLayout extends React.Component {
   render() {
     return (
       <DismissableKeyboardView style={[styles.container, this.props.containerStyles]}>
+        <StatusBar
+          barStyle="light-content"
+        />
         <View style={[styles.animationBox, { top: this.state.top }]}>
           <View style={styles.logoBox}>
             <Image

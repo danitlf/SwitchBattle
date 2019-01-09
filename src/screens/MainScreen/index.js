@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Switch, Alert, Image } from "react-native";
+import { StyleSheet, Text, View, Switch, Alert } from "react-native";
 import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
@@ -80,13 +80,6 @@ export default class MainScreen extends Component {
     render() {
         return (
             <AppLayout>
-                <View style={styles.logoBox}>
-                    <Image
-                        style={styles.logo}
-                        source={require("../../../assets/img/logo.png")}
-                    />
-                </View>
-
                 <Countdown
                     style={styles.countdown}
                     currentTime={this.state.durationString}
@@ -105,11 +98,6 @@ export default class MainScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    logo: {
-        width: 150,
-        height: 150,
-        resizeMode: "contain"
-    },
     switch: {
         transform: [{ scaleX: 3.0 }, { scaleY: 3.0 }],
         marginTop: 40,

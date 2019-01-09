@@ -1,3 +1,4 @@
+import { LayoutAnimation } from 'react-native';
 
 export const FIREBASE_CONFIG = {
   apiKey: "AIzaSyApGt9XjGSJZe6EXUJXgmTOquqZaq6f2-U",
@@ -6,4 +7,24 @@ export const FIREBASE_CONFIG = {
   projectId: "switchbattle-3a181",
   storageBucket: "switchbattle-3a181.appspot.com",
   messagingSenderId: "320870590749"
+};
+
+export const ScreenLayoutAnimation = {
+  duration: 800,
+  create: {
+    property: LayoutAnimation.Properties.scaleXY,
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.8
+  },
+  update: {
+    property: LayoutAnimation.Properties.scaleXY,
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.8
+  },
+  delete: {
+    duration: 200,
+    property: LayoutAnimation.Properties.scaleXY,
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.8
+  }
 };

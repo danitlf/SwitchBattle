@@ -16,6 +16,8 @@ typeof moment.duration.format === "function";
 // true
 
 export default class MainScreen extends Component {
+    static navigationOptions = { header: null };
+    
     constructor(props) {
         super(props);
 

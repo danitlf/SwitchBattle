@@ -1,6 +1,8 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "switch":{
+      ".write": "true",
+      ".read": "true"
+    }
   }
 }

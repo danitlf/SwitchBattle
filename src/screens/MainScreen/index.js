@@ -36,27 +36,36 @@ export default class MainScreen extends Component {
         this.updateInterval();
     };
 
-    trackSwitch = (switchValue, lastSwitchOnDate) => {
+    trackSwitch = (switchValue, lastSwitchOnDate, record) => {
+        let recordSecondsDuration = moment.duration(record, "seconds");
+        let recordSecondsDurationString = `${recordSecondsDuration.format("hh:mm:ss")}`;
+
         this.setState({
             switchValue,
-            lastSwitchOnDate
+            lastSwitchOnDate,
+            record,
+            recordValue: recordSecondsDurationString
         });
     };
 
     changeSwitch = async switchValue => {
         let database = firebase.database();
 
+        let recordSeconds = moment().utc().diff(
+            moment(this.state.lastSwitchOnDate).utc(),
+            "seconds"
+        );
+        let recordSecondsDuration = moment.duration(recordSeconds > this.state.record ? recordSeconds : this.state.record, "seconds");
+        let recordSecondsDurationString = `${recordSecondsDuration.format("hh:mm:ss")}`;
+
         database
-            .ref("switch/")
-            .set({
-                switchValue,
-                lastSwitchOnDate: new Date().toISOString()
-            })
+            .ref("switch/switchValue")
+            .set(switchValue)
             .then(async data => {
                 await this.setState({
                     switchValue,
                     lastSwitchOnDate: new Date(),
-                    recordValue: "00:00:00"
+                    recordValue: recordSecondsDurationString
                 });
             })
             .catch(error => {
@@ -91,7 +100,7 @@ export default class MainScreen extends Component {
                     onValueChange={value => this.changeSwitch(value)}
                 />
 
-                <Text style={styles.record}>Record: 00:00:00</Text>
+                <Text style={styles.record}>Record: {this.state.recordValue}</Text>
             </AppLayout>
         );
     }

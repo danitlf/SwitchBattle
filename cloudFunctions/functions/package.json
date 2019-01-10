@@ -11,9 +11,12 @@
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.1.0"
+    "firebase-functions": "^2.1.0",
+    "moment": "^2.23.0"
   },
   "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "firebase-tools": "^6.2.2",
     "typescript": "~2.8.3"
   },
   "private": true

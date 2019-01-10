@@ -4,7 +4,8 @@ class FirebaseService {
         switchRef.on("value", snapshot => {
             onChange(
                 snapshot.val().switchValue,
-                snapshot.val().lastSwitchOnDate
+                snapshot.val().lastSwitchOnDate,
+                snapshot.val().record
             );
         });
     };

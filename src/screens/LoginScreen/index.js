@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text, LayoutAnimation } from "react-native";
+import { StyleSheet, TextInput, View, Text, LayoutAnimation, Button } from "react-native";
 import AppLayout from "../AppLayout";
 import withDismissKeyboardHOC from "../../hocs/DismissKeyboardHOC";
 
 export default class LoginScreen extends Component {
+  static navigationOptions = { header: null };
+
   constructor(props) {
     super(props);
   }
@@ -13,7 +15,12 @@ export default class LoginScreen extends Component {
       <AppLayout>
         <TextInput
           style={styles.nameInput}
-          placeholder="Seu nome" />
+          placeholder="Apelido" />
+
+        <Button
+          title="Próximo"
+          onPress={() => this.props.navigation.navigate('Main')}
+        />
       </AppLayout>
     );
   }

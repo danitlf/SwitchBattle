@@ -1,5 +1,4 @@
-import Countdown from './Countdown';
+import Countdown from "./Countdown";
+import InfoBox from "./InfoBox";
 
-export {
-  Countdown
-};
+export { Countdown, InfoBox };

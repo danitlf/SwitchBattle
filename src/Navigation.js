@@ -1,5 +1,5 @@
-import React from 'react';
-import { LoginScreen, MainScreen } from './screens';
+import React from "react";
+import { LoginScreen, MainScreen } from "./screens";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
@@ -8,8 +8,8 @@ const AppNavigator = createStackNavigator(
         Main: MainScreen
     },
     {
-        initialRouteName: 'Login',
-        headerMode: 'screen'
+        initialRouteName: "Main",
+        headerMode: "screen"
     }
 );
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MainScreen, LoginScreen } from "./screens";
+import { MainScreen } from "./screens";
 import Navigation from "./Navigation";
 
 export default class App extends Component {

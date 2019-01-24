@@ -10,7 +10,7 @@ import {
     SafeAreaView
 } from "react-native";
 import withDismissKeyboardHOC from "../hocs/DismissKeyboardHOC";
-import { ScreenLayoutAnimation } from "../constants";
+import { ScreenLayoutAnimation, COLORS } from "../constants";
 
 UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -24,15 +24,17 @@ class AppLayout extends React.Component {
         super(props);
 
         this.state = {
-            top: -height
+            top: this.props.animate ? -height : 27
         };
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            LayoutAnimation.configureNext(ScreenLayoutAnimation);
-            this.setState({ top: 0 });
-        }, 200);
+        if(this.props.animate) {
+            setTimeout(() => {
+                LayoutAnimation.configureNext(ScreenLayoutAnimation);
+                this.setState({ top: 0 });
+            }, 200);
+        }
     }
 
     render() {
@@ -40,9 +42,7 @@ class AppLayout extends React.Component {
             <SafeAreaView
                 style={[styles.container, this.props.containerStyles]}
             >
-                <DismissableKeyboardView
-                    style={[styles.container, this.props.containerStyles]}
-                >
+                <DismissableKeyboardView>
                     <StatusBar barStyle="light-content" />
                     <View
                         style={[styles.animationBox, { top: this.state.top }]}
@@ -57,10 +57,9 @@ class AppLayout extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#334856"
+        backgroundColor: COLORS.primaryColor
     },
     animationBox: {
         flex: 1,

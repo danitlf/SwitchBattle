@@ -47,13 +47,6 @@ class AppLayout extends React.Component {
                     <View
                         style={[styles.animationBox, { top: this.state.top }]}
                     >
-                        <View style={styles.logoBox}>
-                            <Image
-                                style={styles.logo}
-                                source={require("../../assets/img/logo.png")}
-                            />
-                        </View>
-
                         {this.props.children}
                     </View>
                 </DismissableKeyboardView>

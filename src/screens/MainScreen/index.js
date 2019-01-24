@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Switch, SafeAreaView } from "react-native";
+import { StyleSheet, View, Switch } from "react-native";
 import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import { FIREBASE_CONFIG, COLORS } from "../../constants";
 import { Countdown, InfoBox } from "../../components";
+import AppLayout from '../AppLayout';
 import FirebaseService from "../../service/FirebaseService";
 
-momentDurationFormatSetup(moment);
+//momentDurationFormatSetup(moment);
 typeof moment.duration.fn.format === "function";
 // true
 typeof moment.duration.format === "function";
@@ -24,7 +25,7 @@ export default class MainScreen extends Component {
             switchValue: false,
             lastSwitchOnDate: new Date(),
             recordValue: "00:00:00",
-            durationString: "00"
+            durationString: "00:00:00"
         };
     }
 
@@ -40,7 +41,7 @@ export default class MainScreen extends Component {
     trackSwitch = (switchValue, lastSwitchOnDate, record) => {
         let recordSecondsDuration = moment.duration(record, "seconds");
         let recordSecondsDurationString = `${recordSecondsDuration.format(
-            "hh:mm:ss"
+            "hh:mm:ss", { trim: false }
         )}`;
 
         this.setState({
@@ -90,19 +91,21 @@ export default class MainScreen extends Component {
                 "seconds"
             );
             let duration = moment.duration(d, "seconds");
-            let durationString = `${duration.format("hh:mm:ss")}`;
+            let durationString = `${duration.format("hh:mm:ss", {
+                trim: false
+            })}`;
             this.setState({ durationString });
         }, 1000);
     };
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            <AppLayout style={styles.container}>
                 <View style={styles.container}>
                     <View style={styles.row}>
                         <InfoBox
                             title={"USER NAME"}
-                            text={this.state.recordValue}
+                            text="Lucas"
                         />
                     </View>
                     <View style={[styles.row, styles.countContainer]}>
@@ -125,7 +128,7 @@ export default class MainScreen extends Component {
                         />
                     </View>
                 </View>
-            </SafeAreaView>
+            </AppLayout>
         );
     }
 }
@@ -141,7 +144,6 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     container: {
-        display: "flex",
         justifyContent: "center",
         flexDirection: "column",
         flex: 1,

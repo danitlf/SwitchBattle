@@ -18,20 +18,6 @@ export default class RankingScreen extends Component {
                 { name: "Renato", record: "12:00:00" },
                 { name: "Julio", record: "12:00:00" },
                 { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-                { name: "Daniel", record: "12:00:00" },
-
             ]
         };
     }
@@ -53,6 +39,7 @@ export default class RankingScreen extends Component {
                     <FlatList
                         data={this.state.players}
                         renderItem={({ item }) => this._renderPlayer(item)}
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
             </AppLayout>
@@ -64,11 +51,10 @@ const styles = StyleSheet.create({
     row: {
         justifyContent: "center",
         alignItems: "center",
-        flexGrow: 3
     },
     list: {
-        flexGrow: 1,
-        width: width
+        flexDirection: 'row',
+        margin: 16
     },
     flatItem: {
         flexDirection: 'row',

@@ -2,20 +2,16 @@ import React from "react";
 import {
     StyleSheet,
     View,
-    Image,
     UIManager,
     LayoutAnimation,
     Dimensions,
     StatusBar,
     SafeAreaView
 } from "react-native";
-import withDismissKeyboardHOC from "../hocs/DismissKeyboardHOC";
 import { ScreenLayoutAnimation, COLORS } from "../constants";
 
 UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
-
-const DismissableKeyboardView = withDismissKeyboardHOC(View);
 
 const { width, height } = Dimensions.get("window");
 
@@ -29,7 +25,7 @@ class AppLayout extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.animate) {
+        if (this.props.animate) {
             setTimeout(() => {
                 LayoutAnimation.configureNext(ScreenLayoutAnimation);
                 this.setState({ top: 0 });
@@ -40,16 +36,13 @@ class AppLayout extends React.Component {
     render() {
         return (
             <SafeAreaView
-                style={[styles.container, this.props.containerStyles]}
-            >
-                <DismissableKeyboardView>
-                    <StatusBar barStyle="light-content" />
-                    <View
-                        style={[styles.animationBox, { top: this.state.top }]}
-                    >
-                        {this.props.children}
-                    </View>
-                </DismissableKeyboardView>
+                style={[styles.container, this.props.containerStyles]}>
+                <StatusBar barStyle="light-content" />
+
+                <View
+                    style={[styles.animationBox, { top: this.state.top }]}>
+                    {this.props.children}
+                </View>
             </SafeAreaView>
         );
     }
@@ -57,19 +50,14 @@ class AppLayout extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "center",
+        flex: 1,
+        justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: COLORS.primaryColor
     },
     animationBox: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center"
-    },
-    logo: {
-        width: 150,
-        height: 150,
-        resizeMode: "contain"
     }
 });
 

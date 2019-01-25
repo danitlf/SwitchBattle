@@ -20,7 +20,7 @@ class AppLayout extends React.Component {
         super(props);
 
         this.state = {
-            top: this.props.animate ? -height : 27
+            top: this.props.animate ? -height : 0
         };
     }
 
@@ -28,7 +28,7 @@ class AppLayout extends React.Component {
         if (this.props.animate) {
             setTimeout(() => {
                 LayoutAnimation.configureNext(ScreenLayoutAnimation);
-                this.setState({ top: 0 });
+                this.setState({ top: "auto" });
             }, 200);
         }
     }

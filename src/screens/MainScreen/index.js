@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Switch } from "react-native";
+import { StyleSheet, View, Switch, Image, Text, TouchableOpacity } from "react-native";
 import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
@@ -9,7 +9,7 @@ import { Countdown, InfoBox } from "../../components";
 import AppLayout from '../AppLayout';
 import FirebaseService from "../../service/FirebaseService";
 
-//momentDurationFormatSetup(moment);
+momentDurationFormatSetup(moment);
 typeof moment.duration.fn.format === "function";
 // true
 typeof moment.duration.format === "function";
@@ -98,10 +98,18 @@ export default class MainScreen extends Component {
         }, 1000);
     };
 
+    navigateToRanking = () => {
+        this.props.navigation.navigate('Ranking');
+    };
+
     render() {
         return (
             <AppLayout animate>
                 <View>
+                    <TouchableOpacity style={styles.buttonMenu} onPress={this.navigateToRanking}>
+                        <Image source={require('../../../assets/img/logo.png')} style={styles.buttonImg} />
+                        <Text style={styles.buttonText}>RANKING</Text>
+                    </TouchableOpacity>
                     <View style={styles.row}>
                         <InfoBox
                             title={"USER NAME"}
@@ -150,5 +158,23 @@ const styles = StyleSheet.create({
     },
     countContainer: {
         justifyContent: "space-evenly"
+    },
+    buttonMenu: {
+        width: 50,
+        height: 50,
+        position: 'absolute',
+        top: 10,
+        left: -30,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "center"
+    },
+    buttonImg: {
+        width: 50,
+        height: 50,
+    },
+    buttonText: {
+        fontSize: 10,
+        color: '#fff'
     }
 });

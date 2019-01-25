@@ -100,8 +100,8 @@ export default class MainScreen extends Component {
 
     render() {
         return (
-            <AppLayout style={styles.container}>
-                <View style={styles.container}>
+            <AppLayout animate>
+                <View>
                     <View style={styles.row}>
                         <InfoBox
                             title={"USER NAME"}
@@ -142,13 +142,6 @@ const styles = StyleSheet.create({
     record: {
         color: "white",
         fontSize: 16
-    },
-    container: {
-        justifyContent: "center",
-        flexDirection: "column",
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: COLORS.primaryColor
     },
     row: {
         justifyContent: "center",

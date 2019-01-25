@@ -2,20 +2,16 @@ import React from "react";
 import {
     StyleSheet,
     View,
-    Image,
     UIManager,
     LayoutAnimation,
     Dimensions,
     StatusBar,
     SafeAreaView
 } from "react-native";
-import withDismissKeyboardHOC from "../hocs/DismissKeyboardHOC";
-import { ScreenLayoutAnimation } from "../constants";
+import { ScreenLayoutAnimation, COLORS } from "../constants";
 
 UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
-
-const DismissableKeyboardView = withDismissKeyboardHOC(View);
 
 const { width, height } = Dimensions.get("window");
 
@@ -24,32 +20,29 @@ class AppLayout extends React.Component {
         super(props);
 
         this.state = {
-            top: -height
+            top: this.props.animate ? -height : 27
         };
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            LayoutAnimation.configureNext(ScreenLayoutAnimation);
-            this.setState({ top: 0 });
-        }, 200);
+        if (this.props.animate) {
+            setTimeout(() => {
+                LayoutAnimation.configureNext(ScreenLayoutAnimation);
+                this.setState({ top: 0 });
+            }, 200);
+        }
     }
 
     render() {
         return (
             <SafeAreaView
-                style={[styles.container, this.props.containerStyles]}
-            >
-                <DismissableKeyboardView
-                    style={[styles.container, this.props.containerStyles]}
-                >
-                    <StatusBar barStyle="light-content" />
-                    <View
-                        style={[styles.animationBox, { top: this.state.top }]}
-                    >
-                        {this.props.children}
-                    </View>
-                </DismissableKeyboardView>
+                style={[styles.container, this.props.containerStyles]}>
+                <StatusBar barStyle="light-content" />
+
+                <View
+                    style={[styles.animationBox, { top: this.state.top }]}>
+                    {this.props.children}
+                </View>
             </SafeAreaView>
         );
     }
@@ -58,19 +51,13 @@ class AppLayout extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
-        backgroundColor: "#334856"
+        backgroundColor: COLORS.primaryColor
     },
     animationBox: {
-        flex: 1,
         justifyContent: "center",
         alignItems: "center"
-    },
-    logo: {
-        width: 150,
-        height: 150,
-        resizeMode: "contain"
     }
 });
 

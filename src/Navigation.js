@@ -1,13 +1,14 @@
 import React from "react";
-import { MainScreen } from "./screens";
+import { MainScreen, RankingScreen } from "./screens";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
     {
-        Main: MainScreen
+        Main: MainScreen,
+        Ranking: RankingScreen
     },
     {
-        initialRouteName: "Main",
+        initialRouteName: "Ranking",
         headerMode: "screen"
     }
 );

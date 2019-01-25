@@ -8,7 +8,7 @@ const AppNavigator = createStackNavigator(
         Ranking: RankingScreen
     },
     {
-        initialRouteName: "Ranking",
+        initialRouteName: "Main",
         headerMode: "screen"
     }
 );

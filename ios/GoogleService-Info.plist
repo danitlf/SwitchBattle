@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>320870590749-74d5fbbuil2edj50rrlgjfg2932el3jp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.320870590749-74d5fbbuil2edj50rrlgjfg2932el3jp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBFWCPXeQxtlh1_BI2FKSOncmLK-CxnVL4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>320870590749</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.SwithBattle</string>
+	<key>PROJECT_ID</key>
+	<string>switchbattle-3a181</string>
+	<key>STORAGE_BUCKET</key>
+	<string>switchbattle-3a181.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:320870590749:ios:b5d84b65c424a741</string>
+	<key>DATABASE_URL</key>
+	<string>https://switchbattle-3a181.firebaseio.com</string>
+</dict>
+</plist>

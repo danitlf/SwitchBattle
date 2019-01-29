@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "320870590749",
+    "firebase_url": "https://switchbattle-3a181.firebaseio.com",
+    "project_id": "switchbattle-3a181",
+    "storage_bucket": "switchbattle-3a181.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320870590749:android:f472a9b3ae5f35db",
+        "android_client_info": {
+          "package_name": "com.swithbattle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320870590749-2ebkcuui6uilmpuadjei8dvmfmmqpl2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClT51qnKVJtpJP4L4PxLCUyxxrETL6JZs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

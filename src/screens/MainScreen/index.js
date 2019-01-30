@@ -6,8 +6,8 @@ import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import { FIREBASE_CONFIG, COLORS } from "../../constants";
 import { Countdown, InfoBox } from "../../components";
-import AppLayout from '../AppLayout';
-import FirebaseService from "../../service/FirebaseService";
+import AppLayout from "../AppLayout";
+import { FirebaseService, StoreService } from "../../service";
 
 //momentDurationFormatSetup(moment);
 typeof moment.duration.fn.format === "function";
@@ -25,11 +25,17 @@ export default class MainScreen extends Component {
             switchValue: false,
             lastSwitchOnDate: new Date(),
             recordValue: "00:00:00",
-            durationString: "00:00:00"
+            durationString: "00:00:00",
+            moves: 0
         };
     }
 
     componentDidMount = () => {
+        this.firebaseConfig();
+        this.setupMoves();
+    };
+
+    firebaseConfig = () => {
         if (!firebase.apps.length) {
             firebase.initializeApp(FIREBASE_CONFIG);
         }
@@ -38,10 +44,19 @@ export default class MainScreen extends Component {
         this.updateInterval();
     };
 
+    setupMoves = async () => {
+        let moves = await StoreService.getMoves();
+        this.setState({
+            moves
+        });
+        console.log(moves);
+    };
+
     trackSwitch = (switchValue, lastSwitchOnDate, record) => {
         let recordSecondsDuration = moment.duration(record, "seconds");
         let recordSecondsDurationString = `${recordSecondsDuration.format(
-            "hh:mm:ss", { trim: false }
+            "hh:mm:ss",
+            { trim: false }
         )}`;
 
         this.setState({
@@ -103,10 +118,7 @@ export default class MainScreen extends Component {
             <AppLayout animate>
                 <View>
                     <View style={styles.row}>
-                        <InfoBox
-                            title={"USER NAME"}
-                            text="Lucas"
-                        />
+                        <InfoBox title={"USER NAME"} text="Lucas" />
                     </View>
                     <View style={[styles.row, styles.countContainer]}>
                         <Countdown

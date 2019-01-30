@@ -33,3 +33,8 @@ export const COLORS = {
     primaryColor: "#334856",
     secondColor: "#3c8f85"
 };
+
+export const MOVES = {
+    keyStorageMoves: "MOVES",
+    initialAmoutMoves: 5
+};

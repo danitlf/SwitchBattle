@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Switch } from "react-native";
+import { StyleSheet, View, Switch, Text } from "react-native";
 import firebase from "@firebase/app";
 import "@firebase/database";
 import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
-import { FIREBASE_CONFIG, COLORS } from "../../constants";
-import { Countdown, InfoBox } from "../../components";
+import { FIREBASE_CONFIG, COLORS, MOVES } from "../../constants";
+import { Countdown, InfoBox, MoveIndicator } from "../../components";
 import AppLayout from "../AppLayout";
 import { FirebaseService, StoreService } from "../../service";
 
@@ -49,7 +49,6 @@ export default class MainScreen extends Component {
         this.setState({
             moves
         });
-        console.log(moves);
     };
 
     trackSwitch = (switchValue, lastSwitchOnDate, record) => {
@@ -68,35 +67,44 @@ export default class MainScreen extends Component {
     };
 
     changeSwitch = async switchValue => {
-        let database = firebase.database();
-
-        let recordSeconds = moment()
-            .utc()
-            .diff(moment(this.state.lastSwitchOnDate).utc(), "seconds");
-        let recordSecondsDuration = moment.duration(
-            recordSeconds > this.state.record
-                ? recordSeconds
-                : this.state.record,
-            "seconds"
-        );
-        let recordSecondsDurationString = `${recordSecondsDuration.format(
-            "hh:mm:ss"
-        )}`;
-
-        database
-            .ref("switch/switchValue")
-            .set(switchValue)
-            .then(async data => {
-                await this.setState({
-                    switchValue,
-                    lastSwitchOnDate: new Date(),
-                    recordValue: recordSecondsDurationString
-                });
-            })
-            .catch(error => {
-                //error callback
-                console.log("error ", error);
+        if (moves > 0) {
+            let moves = await StoreService.decrementMoves();
+            this.setState({
+                moves
             });
+
+            let database = firebase.database();
+
+            let recordSeconds = moment()
+                .utc()
+                .diff(moment(this.state.lastSwitchOnDate).utc(), "seconds");
+            let recordSecondsDuration = moment.duration(
+                recordSeconds > this.state.record
+                    ? recordSeconds
+                    : this.state.record,
+                "seconds"
+            );
+            let recordSecondsDurationString = `${recordSecondsDuration.format(
+                "hh:mm:ss"
+            )}`;
+
+            database
+                .ref("switch/switchValue")
+                .set(switchValue)
+                .then(async data => {
+                    await this.setState({
+                        switchValue,
+                        lastSwitchOnDate: new Date(),
+                        recordValue: recordSecondsDurationString
+                    });
+                })
+                .catch(error => {
+                    //error callback
+                    console.log("error ", error);
+                });
+        } else {
+            alert(MOVES.alertMessage);
+        }
     };
 
     updateInterval = () => {
@@ -118,6 +126,7 @@ export default class MainScreen extends Component {
             <AppLayout animate>
                 <View>
                     <View style={styles.row}>
+                        <MoveIndicator moves={this.state.moves} />
                         <InfoBox title={"USER NAME"} text="Lucas" />
                     </View>
                     <View style={[styles.row, styles.countContainer]}>

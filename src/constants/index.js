@@ -36,5 +36,7 @@ export const COLORS = {
 
 export const MOVES = {
     keyStorageMoves: "MOVES",
-    initialAmoutMoves: 5
+    initialAmoutMoves: 5,
+    alertMessage:
+        "Ops, acabaram seus movimentos.\n Assista um vídeo para ganhar mais movimentos tocando na barra de movimentos"
 };

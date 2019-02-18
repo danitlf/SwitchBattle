@@ -5,7 +5,7 @@ import "@firebase/database";
 import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import { FIREBASE_CONFIG, COLORS } from "../../constants";
-import { Countdown, InfoBox } from "../../components";
+import { Countdown, InfoBox, NavigationButton } from "../../components";
 import AppLayout from '../AppLayout';
 import FirebaseService from "../../service/FirebaseService";
 
@@ -105,36 +105,35 @@ export default class MainScreen extends Component {
     render() {
         return (
             <AppLayout animate>
-                <View>
-                    <TouchableOpacity style={styles.buttonMenu} onPress={this.navigateToRanking}>
-                        <Image source={require('../../../assets/img/logo.png')} style={styles.buttonImg} />
-                        <Text style={styles.buttonText}>RANKING</Text>
-                    </TouchableOpacity>
-                    <View style={styles.row}>
-                        <InfoBox
-                            title={"USER NAME"}
-                            text="Lucas"
-                        />
-                    </View>
-                    <View style={[styles.row, styles.countContainer]}>
-                        <Countdown
-                            style={styles.countdown}
-                            currentTime={this.state.durationString}
-                        />
+                <NavigationButton
+                    title="RANKING"
+                    source={require('../../../assets/img/trophy.png')}
+                    onPress={this.navigateToRanking} />
+                    
+                <View style={styles.row}>
+                    <InfoBox
+                        title={"USER NAME"}
+                        text="Lucas"
+                    />
+                </View>
+                <View style={[styles.row, styles.countContainer]}>
+                    <Countdown
+                        style={styles.countdown}
+                        currentTime={this.state.durationString}
+                    />
 
-                        <Switch
-                            style={styles.switch}
-                            value={this.state.switchValue}
-                            onValueChange={value => this.changeSwitch(value)}
-                        />
-                    </View>
+                    <Switch
+                        style={styles.switch}
+                        value={this.state.switchValue}
+                        onValueChange={value => this.changeSwitch(value)}
+                    />
+                </View>
 
-                    <View style={styles.row}>
-                        <InfoBox
-                            title={"RECORD"}
-                            text={this.state.recordValue}
-                        />
-                    </View>
+                <View style={styles.row}>
+                    <InfoBox
+                        title={"RECORD"}
+                        text={this.state.recordValue}
+                    />
                 </View>
             </AppLayout>
         );
@@ -158,23 +157,5 @@ const styles = StyleSheet.create({
     },
     countContainer: {
         justifyContent: "space-evenly"
-    },
-    buttonMenu: {
-        width: 50,
-        height: 50,
-        position: 'absolute',
-        top: 10,
-        left: -30,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: "center"
-    },
-    buttonImg: {
-        width: 50,
-        height: 50,
-    },
-    buttonText: {
-        fontSize: 10,
-        color: '#fff'
     }
 });

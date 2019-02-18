@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Dimensions, FlatList } from "react-native";
 import { COLORS } from "../../constants";
 import AppLayout from "../AppLayout";
-import { Title } from "../../components";
+import { Title, NavigationButton } from "../../components";
 
 const { width, height } = Dimensions.get('window');
 
@@ -29,9 +29,18 @@ export default class RankingScreen extends Component {
         </View>
     );
 
+    navigateToMain = () => {
+        this.props.navigation.navigate('Main');
+    };
+
     render() {
         return (
             <AppLayout>
+                <NavigationButton
+                    title="GAME"
+                    source={require('../../../assets/img/logo.png')}
+                    onPress={this.navigateToMain} />
+
                 <View style={styles.row}>
                     <Title value="RANKING" />
                 </View>
@@ -50,7 +59,7 @@ export default class RankingScreen extends Component {
 const styles = StyleSheet.create({
     row: {
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
     },
     list: {
         flexDirection: 'row',

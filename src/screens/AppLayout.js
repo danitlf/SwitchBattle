@@ -28,7 +28,7 @@ class AppLayout extends React.Component {
         if (this.props.animate) {
             setTimeout(() => {
                 LayoutAnimation.configureNext(ScreenLayoutAnimation);
-                this.setState({ top: "auto" });
+                this.setState({ top: 0 });
             }, 200);
         }
     }
@@ -53,11 +53,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-start",
         alignItems: "center",
-        backgroundColor: COLORS.primaryColor
+        backgroundColor: COLORS.primaryColor,
     },
     animationBox: {
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 16
     }
 });
 

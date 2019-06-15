@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -15,12 +16,20 @@ public class UIController : MonoBehaviour
 
     private void SetTankSettings()
     {
-        tankButtonAnimator = tankButton.GetComponent<Animator>();
+        if(tankButton != null)
+        {
+            tankButtonAnimator = tankButton.GetComponent<Animator>();
+        }
     }
 
     public void onRankingClick()
     {
-        Debug.Log("RankingClick");
+        SceneManager.LoadScene("RankingScene");
+    }
+
+    public void onGameClick()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     public void onTankClick()

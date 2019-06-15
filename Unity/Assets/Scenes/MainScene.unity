@@ -589,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankButton: {fileID: 997199599}
+  timerText: {fileID: 1401370122}
 --- !u!4 &975274418
 Transform:
   m_ObjectHideFlags: 0
@@ -936,6 +937,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 199988751}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1401370122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1511546180972982474, guid: 9fedca7c9dfff4d278073bdf12210ef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1670532122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1670532122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1056,7 +1069,7 @@ PrefabInstance:
     - target: {fileID: 1511546180972982474, guid: 9fedca7c9dfff4d278073bdf12210ef3,
         type: 3}
       propertyPath: m_Text
-      value: 009
+      value: 00:00:00
       objectReference: {fileID: 0}
     - target: {fileID: 1511546180972982474, guid: 9fedca7c9dfff4d278073bdf12210ef3,
         type: 3}
@@ -1232,8 +1245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 198}
-  m_SizeDelta: {x: -754.2, y: -1725.4}
+  m_AnchoredPosition: {x: -0.000011444, y: 209}
+  m_SizeDelta: {x: -647.8, y: -1725.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925287489
 MonoBehaviour:

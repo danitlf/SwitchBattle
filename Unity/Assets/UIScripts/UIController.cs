@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
 {
     public GameObject tankButton;
     public Text timerText;
+    public Text recordText;
 
     private float timer = 3595;
     private Animator tankButtonAnimator;
@@ -57,5 +58,10 @@ public class UIController : MonoBehaviour
         bool isLeft = tankButtonAnimator.GetBool("isLeft");
 
         tankButtonAnimator.SetBool("isLeft", !isLeft);
+    }
+
+    public void SetRecordText(string recordText)
+    {
+        this.recordText.text = recordText;
     }
 }

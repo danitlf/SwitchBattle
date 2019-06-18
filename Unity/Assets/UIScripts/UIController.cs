@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UIController : MonoBehaviour
     public Text timerText;
     public Text recordText;
 
-    private float timer = 3595;
+    private double timer;
     private Animator tankButtonAnimator;
 
     private void Start()
@@ -28,9 +29,9 @@ public class UIController : MonoBehaviour
 
     private void OnGUI()
     {
-        float hour = Mathf.Floor((timer / 3600) % 24);
-        float minutes = Mathf.Floor((timer / 60) % 60);
-        float seconds = Mathf.RoundToInt(timer % 60) % 60;
+        double hour = Math.Floor((timer / 3600) % 24);
+        double minutes = Math.Floor((timer / 60) % 60);
+        double seconds = Math.Round(timer % 60) % 60;
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hour, minutes, seconds);
     }
@@ -63,5 +64,10 @@ public class UIController : MonoBehaviour
     public void SetRecordText(string recordText)
     {
         this.recordText.text = recordText;
+    }
+
+    public void SetCurrentTime(TimeSpan time)
+    {
+        timer = time.TotalSeconds;
     }
 }

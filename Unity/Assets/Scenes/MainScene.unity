@@ -814,6 +814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3042407132934904691, guid: 5a09456b437414004b3cc2e92931ecc1,
+        type: 3}
+      propertyPath: m_Text
+      value: 00:00:00
+      objectReference: {fileID: 0}
     - target: {fileID: 4118065441023934756, guid: 5a09456b437414004b3cc2e92931ecc1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -928,11 +933,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 320.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3042407132934904691, guid: 5a09456b437414004b3cc2e92931ecc1,
-        type: 3}
-      propertyPath: m_Text
-      value: 10:14:19
       objectReference: {fileID: 0}
     - target: {fileID: 4118065440035838086, guid: 5a09456b437414004b3cc2e92931ecc1,
         type: 3}

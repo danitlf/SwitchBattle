@@ -33,5 +33,11 @@ public class ConfigFirebase : MonoBehaviour
         int recordSeconds = int.Parse(valueDict["record"].ToString());
         TimeSpan recordDate = TimeSpan.FromSeconds(recordSeconds);
         uiController.SetRecordText(recordDate.ToString(@"hh\:mm\:ss"));
+
+        // set last switch time on timer
+        string lastSwitchOnDate = valueDict["lastSwitchOnDate"].ToString();
+        DateTime lastDate = DateTime.Parse(lastSwitchOnDate);
+        TimeSpan differenceBetweenNow = lastDate - DateTime.Now;
+        uiController.SetCurrentTime(differenceBetweenNow.Negate());
     }
 }

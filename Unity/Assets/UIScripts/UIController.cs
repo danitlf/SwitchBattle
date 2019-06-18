@@ -57,8 +57,9 @@ public class UIController : MonoBehaviour
     public void onTankClick()
     {
         bool isLeft = tankButtonAnimator.GetBool("isLeft");
-
         tankButtonAnimator.SetBool("isLeft", !isLeft);
+
+        ConfigFirebase.SetSwitchValue(isLeft);
     }
 
     public void SetRecordText(string recordText)

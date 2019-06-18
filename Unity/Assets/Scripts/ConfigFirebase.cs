@@ -40,4 +40,12 @@ public class ConfigFirebase : MonoBehaviour
         TimeSpan differenceBetweenNow = lastDate - DateTime.Now;
         uiController.SetCurrentTime(differenceBetweenNow.Negate());
     }
+
+    public static void SetSwitchValue(bool isOn)
+    {
+        FirebaseDatabase.DefaultInstance
+            .GetReference("switch/switchValue")
+            .SetValueAsync(isOn);
+            
+    }
 }

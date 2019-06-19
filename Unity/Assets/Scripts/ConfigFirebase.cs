@@ -39,6 +39,10 @@ public class ConfigFirebase : MonoBehaviour
         DateTime lastDate = DateTime.Parse(lastSwitchOnDate);
         TimeSpan differenceBetweenNow = lastDate - DateTime.Now;
         uiController.SetCurrentTime(differenceBetweenNow.Negate());
+
+        // set switch value
+        bool switchValue = valueDict["switchValue"].ToString() == "True";
+        uiController.SetSwitchValue(!switchValue);
     }
 
     public static void SetSwitchValue(bool isOn)

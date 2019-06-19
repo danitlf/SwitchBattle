@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
 
     private void OnGUI()
     {
-        double hour = Math.Floor((timer / 3600) % 24);
+        double hour = Math.Floor(timer / 3600);
         double minutes = Math.Floor((timer / 60) % 60);
         double seconds = Math.Round(timer % 60) % 60;
 
@@ -70,5 +70,10 @@ public class UIController : MonoBehaviour
     public void SetCurrentTime(TimeSpan time)
     {
         timer = time.TotalSeconds;
+    }
+
+    public void SetSwitchValue(bool switchValue)
+    {
+        tankButtonAnimator.SetBool("isLeft", switchValue);
     }
 }

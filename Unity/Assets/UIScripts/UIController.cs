@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
     public Text timerText;
     public Text recordText;
 
+    private DateTime lastSwitchOnDate;
+    private TimeSpan recordDate;
     private double timer;
     private Animator tankButtonAnimator;
 
@@ -56,20 +58,33 @@ public class UIController : MonoBehaviour
 
     public void onTankClick()
     {
+        // put switch to left
         bool isLeft = tankButtonAnimator.GetBool("isLeft");
         tankButtonAnimator.SetBool("isLeft", !isLeft);
 
+        // record boolean switch
         ConfigFirebase.SetSwitchValue(isLeft);
+
+        //// set new record if exists
+        //double differenceLastSwitchOnNow = (lastSwitchOnDate - DateTime.Now).Negate().TotalSeconds;
+        //TimeSpan newRecord = TimeSpan.FromSeconds(differenceLastSwitchOnNow > recordDate.TotalSeconds ? differenceLastSwitchOnNow : recordDate.TotalSeconds);
+        //SetRecordDate(newRecord);
+
+        //// set lastswitch to new Date
+        //SetCurrentTime(new DateTime());
     }
 
-    public void SetRecordText(string recordText)
+    public void SetRecordDate(TimeSpan recordDate)
     {
-        this.recordText.text = recordText;
+        this.recordDate = recordDate;
+        double totalSeconds = Math.Abs(recordDate.TotalSeconds);
+        recordText.text = string.Format("{0:00}:{1:00}:{2:00}", Math.Floor(totalSeconds / 3600), Math.Floor((totalSeconds / 60) % 60), Math.Round(totalSeconds % 60));
     }
 
-    public void SetCurrentTime(TimeSpan time)
+    public void SetCurrentTime(DateTime lastSwitchOnDate)
     {
-        timer = time.TotalSeconds;
+        this.lastSwitchOnDate = lastSwitchOnDate;
+        timer = Math.Abs((lastSwitchOnDate - DateTime.Now).TotalSeconds);
     }
 
     public void SetSwitchValue(bool switchValue)

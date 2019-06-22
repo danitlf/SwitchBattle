@@ -32,13 +32,12 @@ public class ConfigFirebase : MonoBehaviour
         // get record time to set on UI
         int recordSeconds = int.Parse(valueDict["record"].ToString());
         TimeSpan recordDate = TimeSpan.FromSeconds(recordSeconds);
-        uiController.SetRecordText(recordDate.ToString(@"hh\:mm\:ss"));
+        uiController.SetRecordDate(recordDate);
 
         // set last switch time on timer
         string lastSwitchOnDate = valueDict["lastSwitchOnDate"].ToString();
         DateTime lastDate = DateTime.Parse(lastSwitchOnDate);
-        TimeSpan differenceBetweenNow = lastDate - DateTime.Now;
-        uiController.SetCurrentTime(differenceBetweenNow.Negate());
+        uiController.SetCurrentTime(lastDate);
 
         // set switch value
         bool switchValue = valueDict["switchValue"].ToString() == "True";
@@ -50,6 +49,5 @@ public class ConfigFirebase : MonoBehaviour
         FirebaseDatabase.DefaultInstance
             .GetReference("switch/switchValue")
             .SetValueAsync(isOn);
-            
     }
 }
